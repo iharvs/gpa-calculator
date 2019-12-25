@@ -143,6 +143,9 @@
 					<option value="FEUTECH">Far Eastern University - Institute of Technology</option>
 				</select>
 				-->
+				<div class="alert alert-dismissible alert-success s" style="display: none;">
+					<span class="gpa"></span>
+				</div>
 				<div class="panel panel-custom">
 					<div class="panel-heading">
 					</div>
@@ -183,6 +186,7 @@
 		<script type="text/javascript">
 			var count = -1;
 			function reset() {
+				$('.s').hide();
 				$('.gpa').text("0.000");
 				$('.total_grade').text("0");
 				$('.total_units').text("0");
@@ -195,6 +199,7 @@
 				$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
 			}
 			function add() {
+				$('.s').hide();
 				$('.gpa').text("0.000");
 				$('.total_grade').text("0");
 				$('.total_units').text("0");
@@ -211,6 +216,7 @@
 				$('.row-'+count).fadeIn(1000);
 			}
 			function remove() {
+				$('.s').hide();
 				$('.gpa').text("0.000");
 				$('.total_grade').text("0");
 				$('.total_units').text("0");
@@ -221,18 +227,8 @@
 					if(count == -1) {
 						$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
 					} else {
-						/**
-						$('.displaySuccess').hide();
-						$('span.textSuccess').text("You removed a subject.");
-						$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
-						**/
 					}
 				} else {
-					/**
-					$('.displayError').hide();
-					$('span.textError').text("There's no subject.");
-					$('.displayError').toggle(1000).delay(2000).toggle(1000);
-					**/
 					alert('Error: There\'s no subject.');
 				}
 			}
@@ -262,13 +258,14 @@
 
 						$('.total_units').text("");
 						$('.total_units').text(total_units);
-						$('span.textSuccess').text("");
-						$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+
+						$('.s').hide();
+						$('.gpa').text("Your GPA: " + result.toFixed(3));
+						$('.s').toggle();
 					} else {
 						$('.gpa').text("0.000");
 						$('.total_grade').text("0");
 						$('.total_units').text("0");
-
 						/**
 						$('.displayError').hide();
 						$('.textError').text("Input your grades and units.");
@@ -277,11 +274,6 @@
 						alert('Error: Input your grades and units.');
 					}
 				} else {
-					/**
-					$('.displayError').hide();
-					$('span.textError').text("You must add subject.");
-					$('.displayError').toggle(1000).delay(2000).toggle(1000);
-					**/
 					alert('Error: You must add subject.');
 				}
 			}
