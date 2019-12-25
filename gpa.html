@@ -166,7 +166,7 @@
 					<div class="panel-footer" style="font-size: 15px;">
 						GPA: <span class="gpa">0.000</span> /
 						Total units: <span class="total_units">0</span> /
-						Total grades: <span class="total_grade">0.000</span> /
+						Total grades: <span class="total_grade">0</span> /
 						Total subjects: <span class="total_subjects">0</span>
 					</div>
 				</div>
@@ -183,6 +183,9 @@
 		<script type="text/javascript">
 			var count = -1;
 			function reset() {
+				$('.gpa').text("0.000");
+				$('.total_grade').text("0");
+				$('.total_units').text("0");
 				$('.total_subjects').text("0");
 				$('.display').html("");
 				count = -1;
@@ -192,6 +195,9 @@
 				$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
 			}
 			function add() {
+				$('.gpa').text("0.000");
+				$('.total_grade').text("0");
+				$('.total_units').text("0");
 				$('.display center').remove();
 				count += 1;
 				var x = '<div class="row row-'+count+'" style="margin-bottom: 10px;margin-left:0px;margin-right:0px;display:none;"><div class="col-xs-4"><b>Subject '+(count+1)+'</b></div><div class="col-xs-4"><input type="text" id="unit-'+count+'" class="form-control texts" required="" placeholder="Units of this subject '+(count+1)+'"></div><div class="col-xs-4"><input type="text" id="grade-'+count+'" class="form-control texts" required="" placeholder="Grade of this subject '+(count+1)+'"></div></div>';
@@ -205,6 +211,9 @@
 				$('.row-'+count).fadeIn(1000);
 			}
 			function remove() {
+				$('.gpa').text("0.000");
+				$('.total_grade').text("0");
+				$('.total_units').text("0");
 				if(count >= 0) {
 					$('.row-'+count).remove();
 					count -= 1;
