@@ -1,0 +1,341 @@
+<!--
+*******************************************************************
+* @title: gpa-calculator
+* @desc: It's free for everyone!
+* @author: Harvey Arboleda (harveyarboleda.me)
+* @framework: BootStrap v3.3.7 / jQuery v1.11.1
+*******************************************************************
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CGPA Calculator</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="It's free for everyone">
+		<meta name="keywords" content="GPA Calculator,GPA,CGPA Calculator,CGPA">
+		<meta name="author" content="Harvey Arboleda">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.css">
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300i,400&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.1/css/all.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<style type="text/css">
+			body {
+				padding-top: 5%;
+				padding-bottom: 5%;
+			}
+			.panel-custom {
+				border-color: #d81e1e;
+				font-size: 13px;
+				margin-bottom: 10px;
+			}
+			.panel-custom > .panel-heading {
+				background-color: #d81e1e;
+    			border-color: #d81e1e;
+				color: #FFF;
+			}
+			.panel-custom > .panel-body {
+				padding: 10px;
+			}
+
+			.btn-custom {
+				background-color: #d81e1e;
+				border-color: #d81e1e;
+				color: #FFF;
+			}
+
+			.btn-custom:focus, .btn-custom:hover {
+				transition: 0.5s;
+				background-color: #9c2424;
+				border-color: #9c2424;
+			}
+
+			.btn-custom {
+				font-size: 13px;
+				padding:8px 13px;
+			}
+			.texts {
+				height: 35px;
+				font-size: 13px;
+				font-weight: normal;
+			}
+
+			hr {
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+
+			h2.header {
+				font-family: 'Bebas Neue';
+			}
+			.label {
+			    margin-right: 5px;
+			}
+
+			::-webkit-scrollbar {
+			    width: 5px;
+			}
+			 
+			::-webkit-scrollbar-track {
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			}
+			 
+			::-webkit-scrollbar-thumb {
+			  background-color: #d81e1e;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background-color: #982424;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="col-md-3">
+				<img src="./undraw_done_checking_ty9a_cgpa.svg" class="img-responsive" style="width: 60%;margin: 0 auto;">
+				<h2 class="header">CGPA Calculator</h2>
+				<h5 class="desc">It's free for everyone!</h5>
+				<hr/>
+				<label class="label label-info">
+					Bootstrap v3.3.7
+				</label>
+				<label class="label label-danger">
+					jQuery v1.11.1
+				</label>
+				<label class="label label-warning">
+					FontAwesome v5.11.2
+				</label>
+				<hr/>
+				<h5 style="display: block;margin-top: 10px;">
+					created by <a href="http://hrrvxx.github.io">hrrvxx</a>.
+				</h5>
+			</div>
+			<div class="col-md-9">
+				<h3 class="cgpa"></h3>
+				<h3 class="statusx"></h3>
+				<div class="terms">
+				</div>
+				<button class="btn btn-custom" onclick="resetTerm()" style="margin-bottom: 10px;"><i class="fas fa-recycle"></i>&nbsp;&nbsp;Reset Term</button>
+
+
+				<button class="btn btn-custom" onclick="addTerm()" style="margin-bottom: 10px;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Term</button>
+
+				<button class="btn btn-custom" onclick="removeTerm()" style="margin-bottom: 10px;"><i class="fas fa-minus"></i>&nbsp;&nbsp;Remove Term</button>
+
+				<button class="btn btn-custom" onclick="computeCGPA()" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Compute CGPA</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// collect gpa
+			var collect_gpa = [];
+
+			// overall term
+			var overall = 0;
+
+			// add term
+			// (count)
+			// ex: 0, 1, 2, 3, 4, 5
+			var count = [];
+
+			// add subjects/total
+			// (count)
+			// ex: 0, 1, 2, 3, 4, 5
+			var count2 = [];
+
+			// add subjects
+			// (count, subjects)
+			// ex: (0,0), (0,1), (0,2), (0,3), (0,4)
+			//var data = [[]];
+
+			function addTerm() {
+				$('.statusx').text("");
+				count[overall] = overall;
+				count2[overall] = 0;
+				collect_gpa[overall] = 0;
+				var x = '<div class="panel panel-custom" id="terms-'+overall+'" style="display: none;">';
+					x = x + '<div class="panel-heading">';
+						x = x + 'Term: '+(overall+1);
+					x = x + '</div>';
+					x = x + '<div class="panel-body">';
+						x = x + '<div class="row">';
+							x = x + '<div class="col-xs-4">';
+								x = x + '<b>Subject</b>';
+							x = x + '</div>';
+							x = x + '<div class="col-xs-4">';
+								x = x + '<b>Number of Units</b>';
+							x = x + '</div>';
+							x = x + '<div class="col-xs-4">';
+								x = x + '<b>Final Grade</b>';
+							x = x + '</div>';
+						x = x + '</div>';
+						x = x + '<hr/>';
+						x = x + '<div class="display-'+overall+'" style="height: 30vh;overflow-y: auto;">';
+							x = x + '<center style="padding-top: 14vh;">No subject.</center>';
+						x = x + '</div>';
+					x = x + '</div>';
+					x = x + '<div class="panel-footer" style="font-size: 15px;">';
+						x = x + 'GPA: <span class="gpa-'+overall+'">0.000</span> / ';
+						x = x + 'Total units: <span class="total_units-'+overall+'">0</span> / ';
+						x = x + 'Total grades: <span class="total_grade-'+overall+'">0.000</span> / ';
+						x = x + 'Total subjects: <span class="total_subjects-'+overall+'">0</span>';
+					x = x + '</div>';
+					x = x + '<div class="panel-footer" style="font-size: 15px;">';
+						x = x + '<button class="btn btn-custom" onclick="reset('+overall+')"><i class="fas fa-recycle"></i>&nbsp;&nbsp;Reset Subjects</button>';
+
+
+						x = x + '<button class="btn btn-custom" onclick="add('+overall+')"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Subject</button>';
+
+						x = x + '<button class="btn btn-custom" onclick="remove('+overall+')"><i class="fas fa-minus"></i>&nbsp;&nbsp;Remove Subject</button>';
+
+						x = x + '<button class="btn btn-custom" onclick="compute('+overall+')"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Compute</button>';
+					x = x + '</div>';
+				x = x + '</div>';
+				$('.terms').append(x);
+				$('#terms-'+overall).slideToggle();
+				overall += 1;
+			}
+
+			function removeTerm() {
+				if(overall  == 0) {
+					alert("Error: There\'s no terms.");
+				} else {
+					overall -= 1;
+					$('#terms-'+overall).slideToggle().remove();
+					count[overall] = 0;
+					collect_gpa[overall] = 0;
+					count2[overall] = 0;
+					if(overall  == 0) {
+						$('.statusx').text("Add term!! :)");
+					}
+				}
+			}
+
+			function resetTerm() {
+				if(overall >= 1) {
+					overall = 0;
+					collect_gpa = [];
+					count = [];
+					count2 = [];
+					$('.terms').html("");
+					$('.statusx').text("Add term!! :)");
+				} else {
+					alert("Error: There\'s no terms.");
+				}
+			}
+
+			function computeCGPA() {
+				var psttt = 0;
+				var getOverallGPA = 0;
+				for(var i = 0; i < overall; i++) {
+					if(collect_gpa[i] == 0) {
+						psttt++;
+					} else {
+						getOverallGPA += parseFloat(collect_gpa[i]);
+					}
+				}
+
+				var results = getOverallGPA / overall;
+				if(psttt >= 1) {
+					// Error
+					alert('Error: You must click compute all terms.');
+				} else {
+					// Success
+					$('.cgpa').hide();
+					$('.cgpa').text("Your CGPA: " + results);
+					$('.cgpa').toggle();
+				}
+			}
+
+			function reset(term) {
+				count2[term] = 0;
+				collect_gpa[term] = 0;
+				$('.total_subjects-'+term).text("0");
+				$('.display-'+term).html("");
+				$('.display-'+term).append("<center style='padding-top: 14vh;'>No subject.</center>");
+			}
+
+			function add(term) {
+				$('.display-'+term+' center').remove();
+				var getValue = count2[term];
+				collect_gpa[term] = 0;
+				var x = '<div class="row row-'+term+'-'+getValue+'" style="margin-bottom: 10px;margin-left:0px;margin-right:0px;display:none;"><div class="col-xs-4"><b>Subject '+(getValue+1)+'</b></div><div class="col-xs-4"><input type="text" id="unit-'+term+'-'+getValue+'" class="form-control texts" required="" placeholder="Units of this subject '+(getValue+1)+'"></div><div class="col-xs-4"><input type="text" id="grade-'+term+'-'+getValue+'" class="form-control texts" required="" placeholder="Grade of this subject '+(getValue+1)+'"></div></div>';
+
+				$('.total_subjects-'+term).text(getValue+1);
+
+				$('.display-'+term).append(x);
+				$('.row-'+term+'-'+getValue).fadeIn(1000);
+				count2[term] += 1;
+			}
+
+			function remove(term) {
+				if(count2[term] >= 1) {
+					count2[term] -= 1;
+					$('.row-'+term+'-'+count2[term]).remove();
+					$('.total_subjects-'+term).text(count2[term]);
+					if(count2[term] == 0) {
+						$('.display-'+term).append("<center style='padding-top: 14vh;'>No subject.</center>");
+					} else {
+						//$('.displaySuccess').hide();
+						//$('span.textSuccess').text("You removed a subject.");
+						//$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+					}
+				} else {
+					//$('.displayError').hide();
+					//$('span.textError').text("There's no subject.");
+					//$('.displayError').toggle(1000).delay(2000).toggle(1000);
+					alert('Error: There\'s no subject.');
+				}
+			}
+			
+			function compute(term) {
+				var hmmm = 0;
+				if(count2[term] >= 1) {
+					var total_units = 0;
+					var total_grade = 0;
+
+					for(var i = 0; i < count2[term]; i++) {
+						var units = parseInt($('#unit-'+term+'-'+i).val());
+						var grade = parseFloat($('#grade-'+term+'-'+i).val());
+						if($(units).length == 0 || $(grade).length == 0) {
+							hmmm++;
+						} else {
+							total_grade += (units * grade);
+							total_units += units;
+						}
+					}
+					if(hmmm == 0) {
+						var result = total_grade / total_units;
+						$('.gpa-'+term).text("");
+						collect_gpa[term] = result.toFixed(3);
+						$('.gpa-'+term).text(result.toFixed(3));
+
+						$('.total_grade-'+term).text("");
+						$('.total_grade-'+term).text(total_grade);
+
+						$('.total_units-'+term).text("");
+						$('.total_units-'+term).text(total_units);
+					} else {
+						$('.gpa-'+term).text("0.000");
+						$('.total_grade-'+term).text("0");
+						$('.total_units-'+term).text("0");
+						alert('Error: Input your grades and units.');
+					}
+				} else {
+					alert('Error: You must add subject.');
+				}
+			}
+			$(document).ready(function() {
+				addTerm();
+			});
+		</script>
+	</body>
+</html>
