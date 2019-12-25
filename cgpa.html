@@ -271,6 +271,7 @@
 
 			function add(term) {
 				$('.s').hide();
+				collect_gpa[term] = 0;
 				$('.display-'+term+' center').remove();
 				var getValue = count2[term];
 				collect_gpa[term] = 0;
@@ -285,6 +286,7 @@
 
 			function remove(term) {
 				$('.s').hide();
+				collect_gpa[term] = 0;
 				if(count2[term] >= 1) {
 					count2[term] -= 1;
 					$('.row-'+term+'-'+count2[term]).remove();
