@@ -120,7 +120,9 @@
 				</h5>
 			</div>
 			<div class="col-md-9">
-				<h3 class="cgpa"></h3>
+				<div class="alert alert-dismissible alert-success s">
+					<span class="cgpa"></span>
+				</div>
 				<h3 class="statusx"></h3>
 				<div class="terms">
 				</div>
@@ -157,6 +159,7 @@
 			//var data = [[]];
 
 			function addTerm() {
+				$('.s').hide();
 				$('.statusx').text("");
 				count[overall] = overall;
 				count2[overall] = 0;
@@ -205,6 +208,7 @@
 			}
 
 			function removeTerm() {
+				$('.s').hide();
 				if(overall  == 0) {
 					alert("Error: There\'s no terms.");
 				} else {
@@ -220,6 +224,7 @@
 			}
 
 			function resetTerm() {
+				$('.s').hide();
 				if(overall >= 1) {
 					overall = 0;
 					collect_gpa = [];
@@ -249,21 +254,23 @@
 					alert('Error: You must click compute all terms.');
 				} else {
 					// Success
-					$('.cgpa').hide();
+					$('.s').hide();
 					$('.cgpa').text("Your CGPA: " + results);
-					$('.cgpa').toggle();
+					$('.s').toggle();
 				}
 			}
 
 			function reset(term) {
 				count2[term] = 0;
 				collect_gpa[term] = 0;
+				$('.s').hide();
 				$('.total_subjects-'+term).text("0");
 				$('.display-'+term).html("");
 				$('.display-'+term).append("<center style='padding-top: 14vh;'>No subject.</center>");
 			}
 
 			function add(term) {
+				$('.s').hide();
 				$('.display-'+term+' center').remove();
 				var getValue = count2[term];
 				collect_gpa[term] = 0;
@@ -277,6 +284,7 @@
 			}
 
 			function remove(term) {
+				$('.s').hide();
 				if(count2[term] >= 1) {
 					count2[term] -= 1;
 					$('.row-'+term+'-'+count2[term]).remove();
@@ -297,6 +305,7 @@
 			}
 			
 			function compute(term) {
+				$('.s').hide();
 				var hmmm = 0;
 				if(count2[term] >= 1) {
 					var total_units = 0;
