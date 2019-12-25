@@ -263,6 +263,10 @@
 			function reset(term) {
 				count2[term] = 0;
 				collect_gpa[term] = 0;
+				$('.gpa-'+term).text("0.000");
+				$('.total_grade-'+term).text("0");
+				$('.total_units-'+term).text("0");
+				
 				$('.s').hide();
 				$('.total_subjects-'+term).text("0");
 				$('.display-'+term).html("");
@@ -272,6 +276,9 @@
 			function add(term) {
 				$('.s').hide();
 				$('.display-'+term+' center').remove();
+				$('.gpa-'+term).text("0.000");
+				$('.total_grade-'+term).text("0");
+				$('.total_units-'+term).text("0");
 				var getValue = count2[term];
 				collect_gpa[term] = 0;
 				var x = '<div class="row row-'+term+'-'+getValue+'" style="margin-bottom: 10px;margin-left:0px;margin-right:0px;display:none;"><div class="col-xs-4"><b>Subject '+(getValue+1)+'</b></div><div class="col-xs-4"><input type="text" id="unit-'+term+'-'+getValue+'" class="form-control texts" required="" placeholder="Units of this subject '+(getValue+1)+'"></div><div class="col-xs-4"><input type="text" id="grade-'+term+'-'+getValue+'" class="form-control texts" required="" placeholder="Grade of this subject '+(getValue+1)+'"></div></div>';
@@ -286,6 +293,9 @@
 			function remove(term) {
 				$('.s').hide();
 				collect_gpa[term] = 0;
+				$('.gpa-'+term).text("0.000");
+				$('.total_grade-'+term).text("0");
+				$('.total_units-'+term).text("0");
 				if(count2[term] >= 1) {
 					count2[term] -= 1;
 					$('.row-'+term+'-'+count2[term]).remove();
