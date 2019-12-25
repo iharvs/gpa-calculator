@@ -1,1 +1,284 @@
+<!--
+*******************************************************************
+* @title: gpa-calculator
+* @desc: It's free for everyone!
+* @author: Harvey Arboleda (harveyarboleda.me)
+* @framework: BootStrap v3.3.7 / jQuery v1.11.1
+*******************************************************************
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GPA Calculator</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="It's free for everyone">
+		<meta name="keywords" content="GPA Calculator,GPA,CGPA Calculator,CGPA">
+		<meta name="author" content="Harvey Arboleda">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.css">
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300i,400&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.min.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.1/css/all.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<style type="text/css">
+			body {
+				padding-top: 5%;
+				padding-bottom: 5%;
+			}
+			.panel-custom {
+				border-color: #736bfe;
+				font-size: 13px;
+				margin-bottom: 10px;
+			}
+			.panel-custom > .panel-heading {
+				background-color: #736bfe;
+    			border-color: #736bfe;
+				color: #FFF;
+			}
+			.panel-custom > .panel-body {
+				padding: 10px;
+			}
+
+			.btn-custom {
+				background-color: #736bfe;
+				border-color: #736bfe;
+				color: #FFF;
+			}
+
+			.btn-custom:focus, .btn-custom:hover {
+				transition: 0.5s;
+				background-color: #4037e8;
+				border-color: #4037e8;
+			}
+
+			.btn-custom {
+				font-size: 13px;
+				padding:8px 13px;
+			}
+			.texts {
+				height: 35px;
+				font-size: 13px;
+				font-weight: normal;
+			}
+
+			hr {
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+
+			h2.header {
+				font-family: 'Bebas Neue';
+			}
+			.label {
+			    margin-right: 5px;
+			}
+
+			::-webkit-scrollbar {
+			    width: 5px;
+			}
+			 
+			::-webkit-scrollbar-track {
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			}
+			 
+			::-webkit-scrollbar-thumb {
+			  background-color: #736bfe;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background-color: #514bb7;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="col-md-3">
+				<img src="./undraw_done_checking_ty9a.svg" class="img-responsive" style="width: 60%;margin: 0 auto;">
+				<h2 class="header">GPA Calculator</h2>
+				<h5 class="desc">It's free for everyone!</h5>
+				<hr/>
+				<label class="label label-info">
+					Bootstrap v3.3.7
+				</label>
+				<label class="label label-danger">
+					jQuery v1.11.1
+				</label>
+				<label class="label label-warning">
+					FontAwesome v5.11.2
+				</label>
+				<hr/>
+				<h5 style="display: block;margin-top: 10px;">
+					created by <a href="http://hrrvxx.github.io">hrrvxx</a>.
+				</h5>
+			</div>
+			<div class="col-md-9">
+				<!--
+				<div class="displayError" style="display: none;">
+					<div class="alert alert-dismissible alert-danger">
+	  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  					<strong>Error!</strong> <span class="textError"></span>
+					</div>
+				</div>
+				<div class="displaySuccess" style="display: none;">
+					<div class="alert alert-dismissible alert-success">
+	  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  					<strong>Successfully!</strong> <span class="textSuccess"></span>
+					</div>
+				</div>
+				-->
+				<!--
+				<label>
+					School:
+				</label> 
+				<select class="form-control">
+					<option value="FEU">Far Eastern University - Manila</option>
+					<option value="FEUTECH">Far Eastern University - Institute of Technology</option>
+				</select>
+				-->
+				<div class="panel panel-custom">
+					<div class="panel-heading">
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-4">
+								<b>Subject</b>
+							</div>
+							<div class="col-xs-4">
+								<b>Number of Units</b>
+							</div>
+							<div class="col-xs-4">
+								<b>Final Grade</b>
+							</div>
+						</div>
+						<hr/>
+						<div class="display" style="height: 30vh;overflow-y: auto;">
+							<center style="padding-top: 14vh;">No subject.</center>
+						</div>
+					</div>
+					<div class="panel-footer" style="font-size: 15px;">
+						GPA: <span class="gpa">0.000</span> /
+						Total units: <span class="total_units">0</span> /
+						Total grades: <span class="total_grade">0.000</span> /
+						Total subjects: <span class="total_subjects">0</span>
+					</div>
+				</div>
+				<button class="btn btn-custom" onclick="reset()" style="margin-bottom: 10px;" ><i class="fas fa-recycle"></i>&nbsp;&nbsp;Reset Subjects</button>
+
+
+				<button class="btn btn-custom" onclick="add()"  style="margin-bottom: 10px;"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Subject</button>
+
+				<button class="btn btn-custom" onclick="remove()" style="margin-bottom: 10px;"><i class="fas fa-minus"></i>&nbsp;&nbsp;Remove Subject</button>
+
+				<button class="btn btn-custom" onclick="compute()" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Compute</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var count = -1;
+			function reset() {
+				$('.total_subjects').text("0");
+				$('.display').html("");
+				count = -1;
+				$('.displaySuccess').hide();
+				$('span.textSuccess').text("");
+				$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+				$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
+			}
+			function add() {
+				$('.display center').remove();
+				count += 1;
+				var x = '<div class="row row-'+count+'" style="margin-bottom: 10px;margin-left:0px;margin-right:0px;display:none;"><div class="col-xs-4"><b>Subject '+(count+1)+'</b></div><div class="col-xs-4"><input type="text" id="unit-'+count+'" class="form-control texts" required="" placeholder="Units of this subject '+(count+1)+'"></div><div class="col-xs-4"><input type="text" id="grade-'+count+'" class="form-control texts" required="" placeholder="Grade of this subject '+(count+1)+'"></div></div>';
+				/**
+				$('.displaySuccess').hide();
+				$('span.textSuccess').text("You added a new subject.");
+				$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+				**/
+				$('.total_subjects').text(count+1);
+				$('.display').append(x);
+				$('.row-'+count).fadeIn(1000);
+			}
+			function remove() {
+				if(count >= 0) {
+					$('.row-'+count).remove();
+					count -= 1;
+					$('.total_subjects').text(count+1);
+					if(count == -1) {
+						$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
+					} else {
+						/**
+						$('.displaySuccess').hide();
+						$('span.textSuccess').text("You removed a subject.");
+						$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+						**/
+					}
+				} else {
+					/**
+					$('.displayError').hide();
+					$('span.textError').text("There's no subject.");
+					$('.displayError').toggle(1000).delay(2000).toggle(1000);
+					**/
+					alert('Error: There\'s no subject.');
+				}
+			}
+			function compute() {
+				var hmmm = 0;
+				if(count >= 0) {
+					var total_units = 0;
+					var total_grade = 0;
+
+					for(var i = 0; i < count+1; i++) {
+						var units = parseInt($('#unit-'+i).val());
+						var grade = parseFloat($('#grade-'+i).val());
+						if($('#unit-'+i).val().length == 0 || $('#grade-'+i).val().length == 0) {
+							hmmm++;
+						} else {
+							total_grade += (units * grade);
+							total_units += units;
+						}
+					}
+					if(hmmm == 0) {
+						var result = total_grade / total_units;
+						$('.gpa').text("");
+						$('.gpa').text(result.toFixed(3));
+
+						$('.total_grade').text("");
+						$('.total_grade').text(total_grade);
+
+						$('.total_units').text("");
+						$('.total_units').text(total_units);
+						$('span.textSuccess').text("");
+						$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+					} else {
+						$('.gpa').text("0.000");
+						$('.total_grade').text("0");
+						$('.total_units').text("0");
+
+						/**
+						$('.displayError').hide();
+						$('.textError').text("Input your grades and units.");
+						$('.displayError').toggle(1000).delay(2000).toggle(1000);
+						**/
+						alert('Error: Input your grades and units.');
+					}
+				} else {
+					/**
+					$('.displayError').hide();
+					$('span.textError').text("You must add subject.");
+					$('.displayError').toggle(1000).delay(2000).toggle(1000);
+					**/
+					alert('Error: You must add subject.');
+				}
+			}
+			$(function() {
+			  $('[data-toggle="tooltip"]').tooltip();
+			});
+		</script>
+	</body>
+</html>
