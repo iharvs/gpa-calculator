@@ -259,7 +259,7 @@
 				} else {
 					// Success
 					$('.s').hide();
-					$('.cgpa').text("Your CGPA: " + results);
+					$('.cgpa').text("Your CGPA: " + results.toFixed(3));
 					$('.s').toggle();
 					$("html, body").animate({ scrollTop: 0 }, "slow");
 				}
