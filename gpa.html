@@ -186,18 +186,20 @@
 		<script type="text/javascript">
 			var count = -1;
 			function reset() {
-				$('.s').hide();
-				$('.gpa').text("0.000");
-				$('.gpat').text("0.000");
-				$('.total_grade').text("0");
-				$('.total_units').text("0");
-				$('.total_subjects').text("0");
-				$('.display').html("");
-				count = -1;
-				$('.displaySuccess').hide();
-				$('span.textSuccess').text("");
-				$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
-				$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
+				if (confirm('Are you sure you want to reset all subjects?')) {
+					$('.s').hide();
+					$('.gpa').text("0.000");
+					$('.gpat').text("0.000");
+					$('.total_grade').text("0");
+					$('.total_units').text("0");
+					$('.total_subjects').text("0");
+					$('.display').html("");
+					count = -1;
+					$('.displaySuccess').hide();
+					$('span.textSuccess').text("");
+					$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+					$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
+				}
 			}
 			function add() {
 				$('.s').hide();
@@ -218,21 +220,23 @@
 				$('.row-'+count).fadeIn(1000);
 			}
 			function remove() {
-				$('.s').hide();
-				$('.gpa').text("0.000");
-				$('.gpat').text("0.000");
-				$('.total_grade').text("0");
-				$('.total_units').text("0");
-				if(count >= 0) {
-					$('.row-'+count).remove();
-					count -= 1;
-					$('.total_subjects').text(count+1);
-					if(count == -1) {
-						$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
+				if (confirm('Are you sure you want to remove this subject?')) {
+					$('.s').hide();
+					$('.gpa').text("0.000");
+					$('.gpat').text("0.000");
+					$('.total_grade').text("0");
+					$('.total_units').text("0");
+					if(count >= 0) {
+						$('.row-'+count).remove();
+						count -= 1;
+						$('.total_subjects').text(count+1);
+						if(count == -1) {
+							$('.display').append("<center style='padding-top: 14vh;'>No subject.</center>");
+						} else {
+						}
 					} else {
+						alert('Error: There\'s no subject.');
 					}
-				} else {
-					alert('Error: There\'s no subject.');
 				}
 			}
 			function compute() {
