@@ -137,7 +137,7 @@
 
 				<button class="btn btn-custom" onclick="removeTerm()" style="margin-bottom: 10px;"><i class="fas fa-minus"></i>&nbsp;&nbsp;Remove Term</button>
 
-				<button class="btn btn-custom" onclick="computeCGPA()" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Compute CGPA</button>
+				<button class="btn btn-custom" onclick="computeCGPA()" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Compute CGPA to g</button>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -168,7 +168,7 @@
 				count[overall] = overall;
 				count2[overall] = 0;
 				collect_gpa[overall] = 0;
-				var x = '<div class="panel panel-custom" id="terms-'+overall+'" style="display: none;">';
+				var x = '<div class="panel panel-custom" id="terms-'+overall+'" style="display: none;border-radius:3px;">';
 					x = x + '<div class="panel-heading">';
 						x = x + 'Term: '+(overall+1);
 					x = x + '</div>';
