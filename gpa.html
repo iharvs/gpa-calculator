@@ -167,7 +167,7 @@
 						</div>
 					</div>
 					<div class="panel-footer" style="font-size: 15px;">
-						GPA: <span class="gpa">0.000</span> /
+						GPA: <span class="gpat">0.000</span> /
 						Total units: <span class="total_units">0</span> /
 						Total grades: <span class="total_grade">0</span> /
 						Total subjects: <span class="total_subjects">0</span>
@@ -188,6 +188,7 @@
 			function reset() {
 				$('.s').hide();
 				$('.gpa').text("0.000");
+				$('.gpat').text("0.000");
 				$('.total_grade').text("0");
 				$('.total_units').text("0");
 				$('.total_subjects').text("0");
@@ -201,6 +202,7 @@
 			function add() {
 				$('.s').hide();
 				$('.gpa').text("0.000");
+				$('.gpat').text("0.000");
 				$('.total_grade').text("0");
 				$('.total_units').text("0");
 				$('.display center').remove();
@@ -218,6 +220,7 @@
 			function remove() {
 				$('.s').hide();
 				$('.gpa').text("0.000");
+				$('.gpat').text("0.000");
 				$('.total_grade').text("0");
 				$('.total_units').text("0");
 				if(count >= 0) {
@@ -252,7 +255,9 @@
 						var result = total_grade / total_units;
 						$('.gpa').text("");
 						$('.gpa').text(result.toFixed(3));
-
+						$('.gpat').text("");
+						$('.gpat').text(result.toFixed(3));
+						
 						$('.total_grade').text("");
 						$('.total_grade').text(total_grade);
 
@@ -260,6 +265,7 @@
 						$('.total_units').text(total_units);
 
 						$('.s').hide();
+						$('.gpat').text(result.toFixed(3));
 						$('.gpa').text("Your GPA: " + result.toFixed(3));
 						$('.s').toggle();
 					} else {
