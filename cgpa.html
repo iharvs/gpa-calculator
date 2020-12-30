@@ -137,7 +137,7 @@
 
 				<button class="btn btn-custom" onclick="removeTerm()" style="margin-bottom: 10px;"><i class="fas fa-minus"></i>&nbsp;&nbsp;Remove Term</button>
 
-				<button class="btn btn-custom" onclick="computeCGPA()" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Compute CGPA to g</button>
+				<button class="btn btn-custom" onclick="computeCGPA()" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<b>Compute CGPA</b></button>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -203,7 +203,7 @@
 
 						x = x + '<button class="btn btn-custom" onclick="remove('+overall+')" style="margin-bottom: 10px;"><i class="fas fa-minus"></i>&nbsp;&nbsp;Remove Subject</button>';
 
-						x = x + '<button class="btn btn-custom" onclick="compute('+overall+')" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Compute this term</button>';
+						x = x + '<button class="btn btn-custom" onclick="compute('+overall+')" style="margin-bottom: 10px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<b>Compute this term</b></button>';
 					x = x + '</div>';
 				x = x + '</div>';
 				$('.terms').append(x);
