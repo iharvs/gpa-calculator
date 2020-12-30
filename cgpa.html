@@ -212,33 +212,37 @@
 			}
 
 			function removeTerm() {
-				$('.s').hide();
-				if(overall  == 0) {
-					alert("Error: There\'s no terms.");
-				} else {
-					overall -= 1;
-					$('#terms-'+overall).slideToggle().remove();
-					count[overall] = 0;
-					collect_gpa[overall] = 0;
-					count2[overall] = 0;
+				if (confirm('Are you sure you want to remove this term')) {
+					$('.s').hide();
 					if(overall  == 0) {
-						$('.statusx').text("Add term!! :)");
+						alert("Error: There\'s no terms.");
+					} else {
+						overall -= 1;
+						$('#terms-'+overall).slideToggle().remove();
+						count[overall] = 0;
+						collect_gpa[overall] = 0;
+						count2[overall] = 0;
+						if(overall  == 0) {
+							$('.statusx').text("Add term!! :)");
+						}
 					}
 				}
 			}
 
 			function resetTerm() {
-				$('.s').hide();
-				if(overall >= 1) {
-					overall = 0;
-					collect_gpa = [];
-					count = [];
-					count2 = [];
-					$('.terms').html("");
-					$('.statusx').text("");
-					addTerm();
-				} else {
-					alert("Error: There\'s no terms.");
+				if (confirm('Are you sure you want to reset all terms?')) {
+					$('.s').hide();
+					if(overall >= 1) {
+						overall = 0;
+						collect_gpa = [];
+						count = [];
+						count2 = [];
+						$('.terms').html("");
+						$('.statusx').text("");
+						addTerm();
+					} else {
+						alert("Error: There\'s no terms.");
+					}
 				}
 			}
 
@@ -267,16 +271,18 @@
 			}
 
 			function reset(term) {
-				count2[term] = 0;
-				collect_gpa[term] = 0;
-				$('.gpa-'+term).text("0.000");
-				$('.total_grade-'+term).text("0");
-				$('.total_units-'+term).text("0");
+				if (confirm('Are you sure you want to reset this subjects?')) {
+					count2[term] = 0;
+					collect_gpa[term] = 0;
+					$('.gpa-'+term).text("0.000");
+					$('.total_grade-'+term).text("0");
+					$('.total_units-'+term).text("0");
 
-				$('.s').hide();
-				$('.total_subjects-'+term).text("0");
-				$('.display-'+term).html("");
-				$('.display-'+term).append("<center style='padding-top: 14vh;'>No subject.</center>");
+					$('.s').hide();
+					$('.total_subjects-'+term).text("0");
+					$('.display-'+term).html("");
+					$('.display-'+term).append("<center style='padding-top: 14vh;'>No subject.</center>");
+				}
 			}
 
 			function add(term) {
@@ -297,27 +303,29 @@
 			}
 
 			function remove(term) {
-				$('.s').hide();
-				collect_gpa[term] = 0;
-				$('.gpa-'+term).text("0.000");
-				$('.total_grade-'+term).text("0");
-				$('.total_units-'+term).text("0");
-				if(count2[term] >= 1) {
-					count2[term] -= 1;
-					$('.row-'+term+'-'+count2[term]).remove();
-					$('.total_subjects-'+term).text(count2[term]);
-					if(count2[term] == 0) {
-						$('.display-'+term).append("<center style='padding-top: 14vh;'>No subject.</center>");
+				if (confirm('Are you sure you want to remove this subject?')) {
+					$('.s').hide();
+					collect_gpa[term] = 0;
+					$('.gpa-'+term).text("0.000");
+					$('.total_grade-'+term).text("0");
+					$('.total_units-'+term).text("0");
+					if(count2[term] >= 1) {
+						count2[term] -= 1;
+						$('.row-'+term+'-'+count2[term]).remove();
+						$('.total_subjects-'+term).text(count2[term]);
+						if(count2[term] == 0) {
+							$('.display-'+term).append("<center style='padding-top: 14vh;'>No subject.</center>");
+						} else {
+							//$('.displaySuccess').hide();
+							//$('span.textSuccess').text("You removed a subject.");
+							//$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+						}
 					} else {
-						//$('.displaySuccess').hide();
-						//$('span.textSuccess').text("You removed a subject.");
-						//$('.displaySuccess').toggle(1000).delay(2000).toggle(1000);
+						//$('.displayError').hide();
+						//$('span.textError').text("There's no subject.");
+						//$('.displayError').toggle(1000).delay(2000).toggle(1000);
+						alert('Error: There\'s no subject.');
 					}
-				} else {
-					//$('.displayError').hide();
-					//$('span.textError').text("There's no subject.");
-					//$('.displayError').toggle(1000).delay(2000).toggle(1000);
-					alert('Error: There\'s no subject.');
 				}
 			}
 			
